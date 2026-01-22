@@ -1,11 +1,11 @@
 import { Component, input } from '@angular/core';
 import { AnnualInvestmentData } from '@/shared/components/investment/model/investment';
-import { CurrencyPipe, DecimalPipe, PercentPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { ZardTableComponent } from '@/shared/components/table';
 
 @Component({
   selector: 'app-investment-results',
-  imports: [ZardTableComponent, CurrencyPipe, PercentPipe],
+  imports: [ZardTableComponent, CurrencyPipe],
   templateUrl: './investment-results.html',
 })
 export class InvestmentResults {
