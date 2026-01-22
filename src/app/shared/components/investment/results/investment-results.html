@@ -1,0 +1,25 @@
+<table z-table>
+  <caption>
+    A list of your annual investment.
+  </caption>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Investment Value</th>
+      <th>Interest (Year)</th>
+      <th>Total Interest</th>
+      <th>Investment Capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (investment of this.results(); track investment.year) {
+      <tr class="text-center">
+        <td>{{ investment.year }}</td>
+        <td>{{ investment.valueOfEndYear | currency: 'USD' }}</td>
+        <td>{{ investment.interest | currency: 'USD' }}</td>
+        <td>{{ investment.totalInterest | currency: 'USD' }}</td>
+        <td>{{ investment.totalAmountInvested | currency: 'USD' }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

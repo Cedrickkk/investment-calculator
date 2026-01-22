@@ -1,0 +1,71 @@
+<z-card
+  zTitle="Investment Calculator"
+  zDescription="Fill in your investment details to calculate your returns"
+  class="rounded-md max-w-4xl"
+>
+  <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-2 gap-4">
+      <z-form-field>
+        <label for="initialInvestment" z-form-label zRequired>Initial Investment</label>
+        <z-form-control>
+          <input
+            id="initialInvestment"
+            class="w-full border border-gray-300 rounded"
+            z-input
+            type="number"
+            formControlName="initialInvestment"
+          />
+        </z-form-control>
+      </z-form-field>
+
+      <z-form-field>
+        <label for="annualInvestment" z-form-label zRequired>Annual Investment</label>
+        <z-form-control>
+          <input
+            id="annualInvestment"
+            class="w-full border border-gray-300 rounded"
+            z-input
+            type="number"
+            formControlName="annualInvestment"
+          />
+        </z-form-control>
+      </z-form-field>
+
+      <z-form-field>
+        <label for="expectedReturn" z-form-label zRequired>Expected Return</label>
+        <z-form-control>
+          <input
+            id="expectedReturn"
+            class="w-full border border-gray-300 rounded"
+            z-input
+            type="number"
+            formControlName="expectedReturn"
+          />
+        </z-form-control>
+      </z-form-field>
+
+      <z-form-field>
+        <label for="duration" z-form-label zRequired>Duration</label>
+        <z-form-control>
+          <input
+            id="duration"
+            class="w-full border border-gray-300 rounded"
+            z-input
+            type="number"
+            formControlName="duration"
+          />
+        </z-form-control>
+      </z-form-field>
+
+      <button
+        z-button
+        zType="default"
+        type="submit"
+        class="w-full col-span-2"
+        [zDisabled]="investmentForm.invalid"
+      >
+        Calculate Result
+      </button>
+    </div>
+  </form>
+</z-card>
