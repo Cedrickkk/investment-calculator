@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import {
   AnnualInvestmentData,
   InvestmentFormData,
@@ -8,6 +8,8 @@ import {
   providedIn: 'root',
 })
 export class InvestmentService {
+  public annualData = signal<AnnualInvestmentData[]>([]);
+
   public calculateInvestmentResults(data: InvestmentFormData) {
     const { initialInvestment, annualInvestment, expectedReturn, duration } = data;
     const annualData: AnnualInvestmentData[] = [];
@@ -29,6 +31,6 @@ export class InvestmentService {
       });
     }
 
-    return annualData;
+    this.annualData.set(annualData);
   }
 }

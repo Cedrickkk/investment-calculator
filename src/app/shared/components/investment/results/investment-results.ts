@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
-import { AnnualInvestmentData } from '@/shared/components/investment/model/investment';
+import { Component, computed } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ZardTableComponent } from '@/shared/components/table';
+import { InvestmentService } from '@/shared/services/investment.service';
 
 @Component({
   selector: 'app-investment-results',
@@ -9,5 +9,6 @@ import { ZardTableComponent } from '@/shared/components/table';
   templateUrl: './investment-results.html',
 })
 export class InvestmentResults {
-  public results = input<AnnualInvestmentData[]>();
+  constructor(private investmentService: InvestmentService) {}
+  public readonly results = computed(() => this.investmentService.annualData());
 }

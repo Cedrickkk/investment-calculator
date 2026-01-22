@@ -1,4 +1,4 @@
-<main class="flex items-center h-screen justify-center my-9 flex-col">
+<main class="flex items-center justify-center min-h-screen my-24 flex-col">
   <div class="mb-9 text-center">
     <h1 class="font-bold text-4xl tracking-tight">Investment Calculator</h1>
     <p class="text-muted-foreground text-sm">
@@ -6,11 +6,9 @@
     </p>
   </div>
   <div class="flex justify-between gap-8 items-start">
-    <app-investment-form (calculate)="onCalculateInvestmentResults($event)" />
+    <app-investment-form />
     <div>
-      @if (this.annualData().length !== 0) {
-        <app-investment-results [results]="this.annualData()" />
-      }
+      <app-investment-results />
     </div>
   </div>
 </main>

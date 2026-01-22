@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ZardFormFieldComponent, ZardFormControlComponent } from '@/shared/components/form';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZardButtonComponent } from '@/shared/components/button';
 import { ZardCardComponent } from '@/shared/components/card';
 import { ZardInputDirective } from '@/shared/components/input';
 import { InvestmentFormData } from '@/shared/components/investment/model/investment';
+import { InvestmentService } from '@/shared/services/investment.service';
 
 @Component({
   selector: 'app-investment-form',
@@ -21,7 +22,7 @@ import { InvestmentFormData } from '@/shared/components/investment/model/investm
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvestmentForm {
-  public calculate = output<InvestmentFormData>();
+  constructor(private investmentService: InvestmentService) {}
 
   public investmentForm = new FormGroup({
     initialInvestment: new FormControl<number>(0, [Validators.required]),
@@ -38,9 +39,7 @@ export class InvestmentForm {
       expectedReturn: Number(raw.expectedReturn ?? 0),
       duration: Number(raw.duration ?? 0),
     };
-
-    this.calculate.emit(data);
-
+    this.investmentService.calculateInvestmentResults(data);
     this.investmentForm.reset();
   }
 }
