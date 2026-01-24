@@ -1,4 +1,4 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ZardTableComponent } from '@/shared/components/table';
 import { InvestmentService } from '@/shared/services/investment.service';
@@ -9,6 +9,7 @@ import { InvestmentService } from '@/shared/services/investment.service';
   templateUrl: './investment-results.html',
 })
 export class InvestmentResults {
-  constructor(private investmentService: InvestmentService) {}
-  public readonly results = computed(() => this.investmentService.annualData());
+  private investmentService = inject(InvestmentService);
+
+  public results = this.investmentService.annualData();
 }

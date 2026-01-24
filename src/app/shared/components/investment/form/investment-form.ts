@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ZardFormFieldComponent, ZardFormControlComponent } from '@/shared/components/form';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ZardButtonComponent } from '@/shared/components/button';
@@ -22,7 +22,7 @@ import { InvestmentService } from '@/shared/services/investment.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvestmentForm {
-  constructor(private investmentService: InvestmentService) {}
+  private investmentService = inject(InvestmentService);
 
   public investmentForm = new FormGroup({
     initialInvestment: new FormControl<number>(0, [Validators.required]),

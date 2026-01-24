@@ -8,7 +8,8 @@ import {
   providedIn: 'root',
 })
 export class InvestmentService {
-  public annualData = signal<AnnualInvestmentData[]>([]);
+  private annualDataSignal = signal<AnnualInvestmentData[]>([]);
+  public annualData = this.annualDataSignal.asReadonly();
 
   public calculateInvestmentResults(data: InvestmentFormData) {
     const { initialInvestment, annualInvestment, expectedReturn, duration } = data;
@@ -31,6 +32,6 @@ export class InvestmentService {
       });
     }
 
-    this.annualData.set(annualData);
+    this.annualDataSignal.set(annualData);
   }
 }
